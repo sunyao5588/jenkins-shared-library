@@ -1,0 +1,5 @@
+# Cancel the Previous Jenkins Jobs in order to same time
+### Description:
+### DS projects Gitflow is feature-master strategy, which means every feature branch needs to pass CI as a latest code
+(updated with master branch). Therefore previous CI is meaningless to run.
+### With this method will save time to spend time on previous running jobs
