@@ -1,6 +1,6 @@
-def cancelPreviousBuilds() {
-    def jobName = env.JOB_NAME
-    def buildNumber = env.BUILD_NUMBER.toInteger()
+def cancelPreviousBuilds(JOB_NAME, BUILD_NUMBER) {
+    def jobName = JOB_NAME
+    def buildNumber = BUILD_NUMBER.toInteger()
     /* Get job name */
     def currentJob = Jenkins.instance.getItemByFullName(jobName)
 
