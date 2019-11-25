@@ -1,4 +1,4 @@
-def cancelPreviousBuilds(JOB_NAME, BUILD_NUMBER) {
+def call(JOB_NAME, BUILD_NUMBER) {
     def jobName = JOB_NAME
     def buildNumber = BUILD_NUMBER.toInteger()
     /* Get job name */
