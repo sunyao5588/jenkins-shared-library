@@ -1,4 +1,10 @@
-void call(String commitSha, String giturl, String gitcontext, String message, String state) {
+def getCommitSha() {
+  //sh "git rev-parse HEAD > .git/current-commit"
+  return readFile(".git/current-commit").trim()
+}
+
+void call(String giturl, String gitcontext, String message, String state) {
+  commitSha = getCommitSha()
   step([
       $class: "GitHubCommitStatusSetter",
       reposSource: [$class: "ManuallyEnteredRepositorySource", url: giturl],

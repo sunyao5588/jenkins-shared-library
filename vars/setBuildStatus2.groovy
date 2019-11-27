@@ -4,13 +4,13 @@ def getRepoURL() {
 }
 
 def getCommitSha() {
-  sh "git rev-parse HEAD > .git/current-commit"
+  //sh "git rev-parse HEAD > .git/current-commit"
   return readFile(".git/current-commit").trim()
 }
 
 def updateGithubCommitStatus(build) {
   // workaround https://issues.jenkins-ci.org/browse/JENKINS-38674
-  repoUrl = getRepoURL()
+  //repoUrl = getRepoURL()
   commitSha = getCommitSha()
 
   step([
