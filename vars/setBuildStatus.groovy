@@ -1,15 +1,15 @@
-def getRepoURL() {
-  sh "git config --get remote.origin.url > .git/remote-url"
-  return readFile(".git/remote-url").trim()
-}
+// def getRepoURL() {
+//   sh "git config --get remote.origin.url > .git/remote-url"
+//   return readFile(".git/remote-url").trim()
+// }
 
 def getCommitSha() {
   sh "git rev-parse HEAD > .git/current-commit"
   return readFile(".git/current-commit").trim()
 }
 
-void call(String gitcontext, String message, String state) {
-  repoUrl = getRepoURL()
+void call(String repoUrl, String gitcontext, String message, String state) {
+  //repoUrl = getRepoURL()
   commitSha = getCommitSha()
   step([
       $class: "GitHubCommitStatusSetter",
