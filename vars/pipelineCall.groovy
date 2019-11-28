@@ -39,12 +39,7 @@ def call(String typestr = 'test'){
                 }
                 steps{
                     echo "python test"
-                    /*
                     container('build'){
-                        sh(label: 'Python Unit Test Starts', script: """
-                            echo -e "\033[32m Python Unit Test starting... \033[0m"
-                        """)
-
                         /* Seperate test steps so easy to analyse test time distribution - Jason */
                         sh(label: 'OCR Processor Unit Test', script: """
                             export OMP_THREAD_LIMIT=1 && export TESSDATA_PREFIX="/models/tesseract/ver_fast" && pytest --durations=1 processor/creditreview/ocr_processor/unit_test 
@@ -64,9 +59,8 @@ def call(String typestr = 'test'){
                         sh(label: 'Keyword Search Processor Unit Test', script: """
                             export OMP_THREAD_LIMIT=1 && pytest --durations=1 processor/creditreview/keyword_search_processor/unit_test
                         """)
+                    }
                 }
-                    
-                
             }
             stage('Smoke Test'){
                 when {
