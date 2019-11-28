@@ -66,9 +66,9 @@ def call(String branchName, String server, String imagename1, String imagename2)
                 sh 'echo cleanup dev app and DB we deploy'
                 sh """
                 kubectl delete deploy/app-${branchName}-cidr -n cidr-dev || true 
-                kubectl delete deploy/mysql-${branchName}-cidr -n cidr-dev || true 
+                kubectl delete replicationcontroller/mysql-${branchName}-cidr -n cidr-dev || true 
                 kubectl delete deploy/app-${branchName}-pevc -n pevc-dev || true  
-                kubectl delete deploy/mysql-${branchName}-pevc -n pevc-dev || true  
+                kubectl delete replicationcontroller/mysql-${branchName}-pevc -n pevc-dev || true  
                 kubectl delete svc/app-${branchName}-cidr-svc -n cidr-dev || true  
                 kubectl delete svc/mysql-${branchName}-cidr-svc -n cidr-dev || true  
                 kubectl delete svc/app-${branchName}-pevc-svc -n pevc-dev || true  
