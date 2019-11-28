@@ -1,4 +1,4 @@
-def call(String branchName, String server, String imagename) {
+def call(String branchName, String server, String imagename1, String imagename2) {
     podTemplate(yaml: """
     apiVersion: v1
     kind: Pod
@@ -17,7 +17,7 @@ def call(String branchName, String server, String imagename) {
                 - ${server}
       containers:
       - name: build
-        image: alpine
+        image: ${imagename1}
         resources:
           requests:
             memory: "50Mi"
@@ -32,7 +32,7 @@ def call(String branchName, String server, String imagename) {
           - mountPath: /var/run/docker.sock
             name: docker-cli
       - name: deploy
-        image: ${imagename}
+        image: ${imagename2}
         resources:
           requests:
             memory: "50Mi"
