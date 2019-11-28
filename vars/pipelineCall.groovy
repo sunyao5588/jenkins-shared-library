@@ -104,9 +104,6 @@ def call(String typestr){
             } 
         }
     }
-    else if (type == "CI") {
-        sh 'echo "this for CI"'
-    }
     else {
         sh 'echo nothing here'
     }
