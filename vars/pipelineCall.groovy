@@ -63,9 +63,9 @@ def call(String typestr){
                             sh(label: 'Keyword Search Processor Unit Test', script: """
                                 export OMP_THREAD_LIMIT=1 && pytest --durations=1 processor/creditreview/keyword_search_processor/unit_test
                             """)
-                        }
-                      
                     }
+                      
+                    
                 }
                 stage('Smoke Test'){
                     when {
@@ -105,6 +105,8 @@ def call(String typestr){
         }
     }
     else {
-        sh 'echo nothing here'
+        sh 'echo "nothing here"'
     }
+    
 }
+
