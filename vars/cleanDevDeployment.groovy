@@ -11,7 +11,7 @@ def call(String branchName) {
             requiredDuringSchedulingIgnoredDuringExecution: 
             nodeSelectorTerms:
             - matchExpressions:
-                - key: kubernetes.io/hostname
+              - key: kubernetes.io/hostname
                 operator: In 
                 values:
                 - hkappdlv041
