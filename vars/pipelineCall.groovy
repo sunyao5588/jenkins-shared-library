@@ -64,8 +64,7 @@ def call(String typestr){
                                 export OMP_THREAD_LIMIT=1 && pytest --durations=1 processor/creditreview/keyword_search_processor/unit_test
                             """)
                         }
-                        */
-                        
+                      
                     }
                 }
                 stage('Smoke Test'){
