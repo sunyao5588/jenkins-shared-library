@@ -1,4 +1,5 @@
 #!groovy
+// this is for CIDR/PEVC pytest and smoke test
 def call(String typestr = 'test'){
     pipeline{
         agent {
