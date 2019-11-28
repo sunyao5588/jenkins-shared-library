@@ -1,3 +1,4 @@
+#!groovy
 def call(String typestr){
     if (type == "test") {
         pipeline{
