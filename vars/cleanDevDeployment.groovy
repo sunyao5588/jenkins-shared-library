@@ -3,58 +3,58 @@ def call(String branchName) {
     apiVersion: v1
     kind: Pod
     metadata:
-        labels:
+      labels:
         some-label: cleanup
     spec:
-        affinity:
+      affinity:
         nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution: 
+          requiredDuringSchedulingIgnoredDuringExecution: 
             nodeSelectorTerms:
             - matchExpressions:
               - key: kubernetes.io/hostname
                 operator: In 
                 values:
                 - hkappdlv041
-        containers:
-        - name: build
+      containers:
+      - name: build
         image: hkappdlv006.asia.pwcinternal.com:443/cidr/cidr-build:v6.0.0
         resources:
-            requests:
+          requests:
             memory: "50Mi"
             cpu: "50m"
-            limits:
+          limits:
             memory: "4000Mi"
             cpu: "2000m"
         command:
         - cat
         tty: true
         volumeMounts:
-            - mountPath: /var/run/docker.sock
+          - mountPath: /var/run/docker.sock
             name: docker-cli
-        - name: deploy
+      - name: deploy
         image: hkappdlv006.asia.pwcinternal.com:443/middleware/operate-tools:kubectl-cidr-dev
         resources:
-            requests:
+          requests:
             memory: "50Mi"
             cpu: "50m"
-            limits:
+          limits:
             memory: "1000Mi"
             cpu: "1000m"
         command:
         - cat
         tty: true
         volumeMounts:
-            - mountPath: /var/run/docker.sock
+          - mountPath: /var/run/docker.sock
             name: docker-cli
-            - mountPath: /app/repo/cidr-src
+          - mountPath: /app/repo/cidr-src
             name: source-code-repo
-        volumes:
+      volumes:
         - hostPath:
             path: /var/run/docker.sock
             type: ""
-            name: docker-cli
+          name: docker-cli
         - name: source-code-repo
-            emptyDir: {}
+          emptyDir: {}
     """
     ) {
         node(POD_LABEL) {
