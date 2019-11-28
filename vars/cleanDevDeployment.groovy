@@ -1,4 +1,4 @@
-def call(String branchName) {
+def call(String branchName, String server, String imagename) {
     podTemplate(yaml: """
     apiVersion: v1
     kind: Pod
@@ -14,10 +14,10 @@ def call(String branchName) {
               - key: kubernetes.io/hostname
                 operator: In 
                 values:
-                - hkappdlv041
+                - ${server}
       containers:
       - name: build
-        image: hkappdlv006.asia.pwcinternal.com:443/cidr/cidr-build:v6.0.0
+        image: alpine
         resources:
           requests:
             memory: "50Mi"
@@ -32,7 +32,7 @@ def call(String branchName) {
           - mountPath: /var/run/docker.sock
             name: docker-cli
       - name: deploy
-        image: hkappdlv006.asia.pwcinternal.com:443/middleware/operate-tools:kubectl-cidr-dev
+        image: ${imagename}
         resources:
           requests:
             memory: "50Mi"
@@ -65,7 +65,6 @@ def call(String branchName) {
             container('deploy') {
                 sh 'echo cleanup dev app and DB we deploy'
                 sh """
-                mysql-BRANCHNAME-pevc-svc
                 kubectl delete deploy/app-${branchName}-cidr -n cidr-dev || true 
                 kubectl delete deploy/mysql-${branchName}-cidr -n cidr-dev || true 
                 kubectl delete deploy/app-${branchName}-pevc -n pevc-dev || true  
