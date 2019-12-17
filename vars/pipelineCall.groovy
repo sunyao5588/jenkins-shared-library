@@ -73,7 +73,7 @@ def call(String typestr = 'test'){
                     
                     container('build'){
                         sh(label: 'Core Smoke Test', script: """
-                            cd engine && export DoraJobs=2 && export OMP_THREAD_LIMIT=1 && TESSDATA_PREFIX="/models/tesseract/ver_fast"  NLP_MODEL_PATH="/models/nlp_model" sbt clean core/test
+                            cd engine && export DoraJobs=2 && export OMP_THREAD_LIMIT=1 && TESSDATA_PREFIX="/models/tesseract/ver_fast"  NLP_MODEL_PATH="/models/nlp_model" sbt core/clean coverage core/test core/coverageReport
                         """)
                         sh(label: 'Web Smoke Test', script: """                      
                             cd engine && export DoraJobs=2 && export OMP_THREAD_LIMIT=1 && TESSDATA_PREFIX="/models/tesseract/ver_fast"  NLP_MODEL_PATH="/models/nlp_model" sbt web/clean coverage web/test web/coverageReport
